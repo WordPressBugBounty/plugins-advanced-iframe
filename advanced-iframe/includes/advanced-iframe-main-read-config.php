@@ -81,6 +81,9 @@ if (isset($aip_standalone)) {
   $multi_domain_enabled = $options['multi_domain_enabled'];
   $demo = $options['demo'];
   $show_support_message = $options['show_support_message'];
+  if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == '127.0.0.1') {
+	  $show_support_message = 'false';
+  }
   $purchase_code = $options['purchase_code'];
 
   $debug_js = AdvancedIframeHelper::check_debug_enabled($options['debug_js']);

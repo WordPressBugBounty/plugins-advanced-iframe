@@ -2,8 +2,8 @@
 Contributors: mdempfle
 Tags: iframe, embed, resize, shortcode, modify css
 Requires at least: 3.3
-Tested up to: 6.8.2
-Stable tag: 2025.8
+Tested up to: 6.9
+Stable tag: 2025.10
 Requires PHP: 5.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0
@@ -166,7 +166,25 @@ Use the Wordpress installer to update or simply overwrite all files from your pr
 If you have some radio elements empty after the update simply select the one you like and save again.
 
 == Changelog ==
-= 2025.8
+= 2025.10 =
+- New: Tested with WordPress 6.9
+- New: Updated Freemius to v2.13.0
+
+= 2025.9 =
+- New: Tested with WordPress 6.8.3
+- New: Updated jQuery to v3.7.1 
+- New: Updated Freemius to v2.12.2
+- New: Performance and memory optimizations. 
+- Fix: Deprecated utf8_encode was removed from the code.
+- Fix: hide_part_of_iframe with setting false was not displaying anything. Now setting this to false is treated like an empty input.
+- Fix: Version of the custom folder was overwritten by the main plugin settings. Now it is version 1.0 like it should again. 
+- Fix: Fixed the link in the area selector to point to advanced-iframe.com and not to tinywebgallery.com/blog
+- Fix: Changed the Plugin URI in the custom folder plugin from codecanyon to advanced-iframe.com
+- Fix: The OPT-IN link in the remind to OPT_IN box was not working in all cases.   
+- Fix: The 'Undefined array key "plugins"' which was shown for some users once a day was fixed.
+- Fix: Support message is removed on localhost as no optin is possible there. 
+
+= 2025.8 =
 - Fix: 2025.7 was overwriting the style attribute instead appending the border. This broke a couple of features which now work fine again. 
 
 = 2025.7 =
