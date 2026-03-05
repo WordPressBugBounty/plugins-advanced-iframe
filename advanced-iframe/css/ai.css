@@ -791,7 +791,7 @@ ul#browser-list {
 }
 
 #ai .optin-message {
-      height: 250px;
+      height: 40px;
       animation: shrinkHeight 0.5s ease forwards;
       animation-delay: 3s;
 	  align-content: center;
@@ -799,10 +799,10 @@ ul#browser-list {
 
     @keyframes shrinkHeight {
       from {
-        height: 250px;
+        height: 40px;
       }
       to {
-        height: 60px;
+        height: 40px;
       }
     }
 

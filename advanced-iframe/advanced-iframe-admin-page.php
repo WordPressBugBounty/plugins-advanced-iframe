@@ -248,15 +248,17 @@ if (is_user_logged_in() && is_admin()) {
           ));
           $text = balanceTags($text, true);
           $devOptions[$item] = stripslashes($text);
+        } elseif ($item === 'id') {
+          $newtext = preg_replace("/\W/", "_", $text);
+          // remove trailing numbers
+          $newtext = preg_replace('/^\d+/', '', $newtext);
+		  if (!empty($newtext)) {
+		    $devOptions[$item] = $newtext;
+		  }
         } elseif (function_exists('sanitize_text_field')) {
           $devOptions[$item] = stripslashes(sanitize_text_field($text));
         } else {
           $devOptions[$item] = stripslashes($text);
-        }
-        if ($item === 'id') {
-          $devOptions[$item] = preg_replace("/\W/", "_", $text);
-          // remove trailing numbers
-          $devOptions[$item] = preg_replace('/^\d+/', '', $devOptions[$item]);
         }
 
         // we check if we have an invalid configuration!

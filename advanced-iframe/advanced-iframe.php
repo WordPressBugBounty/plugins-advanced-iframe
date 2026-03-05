@@ -2,7 +2,9 @@
 /*
 Plugin Name: Advanced iFrame
 Plugin URI: https://wordpress.org/plugins/advanced-iframe/
-Version: 2025.10
+Version: 2026.0
+Requires at least: 5.5
+Requires PHP: 7.4
 Text Domain: advanced-iframe
 Domain Path: /languages
 Author: Michael Dempfle
@@ -33,7 +35,7 @@ if (!defined('_VALID_AI')) {
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-$aiVersion = '2025.10';
+$aiVersion = '2026.0';
 // check $aiJsSize
 
 $cons_advancediFrame = null;
@@ -970,7 +972,7 @@ if (function_exists('ai_fs')) {
 
       function createMinimizedAiJs($backend) {
         global $aiVersion;
-        $aiJsSize = 87421;
+        $aiJsSize = 88293;
         $newContent = file_get_contents(dirname(__FILE__) . '/js/ai.js');
         $oldFileName = dirname(__FILE__) . '/js/ai.min.js';
         if ((strlen($newContent) == $aiJsSize) && file_exists($oldFileName)) {
@@ -1389,20 +1391,37 @@ if (function_exists('ai_fs')) {
         return $content;
       }
 
-      // The function that handles the AJAX request
+	 /**
+	  * Public AJAX endpoint intentionally exposed to unauthenticated users.
+	  * Used exclusively for creating a temporary FIFO cache.
+	  * No user data or privileged operations performed.
+	  * Cache is only active if the feature "Add iframe URL as param" with hash/hashrewrite is enabled.
+	  * The cache size is reported in the administration so the owner can check, if it is full.
+	  */
       function aip_map_url_callback() {
         check_ajax_referer('aip-parameter-nonce', 'security');
-        $url = urldecode($_POST['url']);
+		
+		// check if feature is active
+         $options = get_option($this->adminOptionsName);
+         $hashShortCodeActive = $options['add_iframe_url_as_param_prefix'] == "hash" || 
+		   $options['add_iframe_url_as_param_prefix'] == "hashrewrite";
+		
+		if (!$hashShortCodeActive) {
+	       echo "Request_not_valid";
+           die();		   
+		}
+		
+		$url = urldecode($_POST['url']);
 		if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
-	      echo "URL_NOT_VALID";
+	      echo "Request_not_valid";
 		  die();
 		}
 		// we use a default wp table as the data is normally quite small.
 		$paramData = get_option("advancediFrameParameterData");
 		if (!empty($paramData)) {
 		  if(count($paramData) > 1000) {
-			echo "TOO_MANY_CACHE_ENTRIES";
-			die();
+			// Remove first cache element so we have a FIFO cache with a max size of 1000
+			array_shift($paramData);
 		  }
 		  $nextid = 1;
           foreach ($paramData as $entry) {

@@ -1,10 +1,10 @@
 === Advanced iFrame ===
 Contributors: mdempfle
 Tags: iframe, embed, resize, shortcode, modify css
-Requires at least: 3.3
-Tested up to: 6.9
-Stable tag: 2025.10
-Requires PHP: 5.4
+Stable tag: 2026.0
+Tested up to: 6.9.1
+Requires at least: 5.5
+Requires PHP: 7.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0
 
@@ -166,6 +166,23 @@ Use the Wordpress installer to update or simply overwrite all files from your pr
 If you have some radio elements empty after the update simply select the one you like and save again.
 
 == Changelog ==
+= 2026.0 =
+- Breaking change: Due to the security fix for "Add iframe URL as param" and "Prefix/id/urlrewrite for iframe URL," the hash/hashrewrite needs to be set in both the administration AND the shortcode.
+- Breaking change: The postMessage send from the iframe is only processed if the feature is enabled. This was added for: "Add iframe URL as param", "Use the iframe title for the parent", "Include content directly from the iframe". Please read the updated documentation. Most users will not have to do anything, because the default way to configure this features by the administration, has not changed. If is only different if you configured them directly in the ai_external.js 
+- Security fix: The feature "Include content directly from the iframe" was accepting any postMessage in the correct structure and adding it to the parent page. Now the feature needs to be enabled and also the input is sanitized by removing all script tags. If you enable this feature only the configured keys are accepted. Make sure that you trust the page you include as you extract content from there! 
+- Security fix: Cross-Site Scripting (XSS) was reported by Patch Stack. The setting additional_height has now XSS detection. The same sanitation was also applied to iframe_zoom and onload_scroll_top. See https://www.wordfence.com/threat-intel/vulnerabilities/id/dcdcb29e-48d0-4e22-8e11-0c76b4355268 and https://patchstack.com/database/Wordpress/Plugin/advanced-iframe/vulnerability/wordpress-advanced-iframe-plugin-2025-10-cross-site-scripting-xss-vulnerability?_s_id=cve
+- Security fix: Broken Access Control reported by the patch stack has been fixed.  There is no official CVE number yet. The URL cache is now a first-in, first-out (FIFO) cache and cannot be fully filled anymore. The cache is now only active if "Add iframe URL as param" with hash/hashrewrite is enabled. The cache size is now shown in the administration, and additional documentation has been added. 
+- Security fix: At hide_part_of_iframe the URL was escaped with esc_html and not esc_url. Now settings like javascript:alert%28document.domain%29 are removed.
+- New: Tested with WordPress 6.9.1
+- New: Tested with PHP 8.5. The entire code was also analyzed with ChatGPT 5.2, which reported no breaking changes.
+- New: The minimum PHP version has been increased to 7.4. While the plugin itself still works with lower versions, such PHP versions are insecure and should no longer be used!   
+- New: The minimum WordPress version was increased to 5.5. The plugin works with older versions of WordPress, but they are insecure and should not be used.   
+- Fix: user meta and user info data output is using esc_html to avoid that invalid data can cause any issues.
+- Fix: The debug console has now removed any global background image from its div to always be displayed properly.
+- Fix: id could be set to empty which leads to issues in the Javascript. Not it is mandatory and checked in the administration and in the external workaround.
+- Fix: Changed the demo link from "Use the iframe title for the parent" from the general demo page to the sub demo where it is used. 
+- Fix: The style shortcode attribute is now always concatenated with a ; 
+
 = 2025.10 =
 - New: Tested with WordPress 6.9
 - New: Updated Freemius to v2.13.0

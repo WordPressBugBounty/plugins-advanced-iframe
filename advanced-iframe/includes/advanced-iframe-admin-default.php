@@ -71,7 +71,7 @@ defined('_VALID_AI') or die('Direct Access to this location is not allowed.');
       $ovars = get_object_vars($current_user->data);
       foreach ($ovars as $key => $value) {
         if (!is_object($value) && !is_array($value)) {
-          $userinfo_html .= $key . " => " . $value . "<br>";
+          $userinfo_html .= esc_html($key) . " => " . esc_html($value) . "<br>";
         }
       }
       $userinfo_html .= '</span>' . $extraUserInfo;
@@ -82,7 +82,7 @@ defined('_VALID_AI') or die('Direct Access to this location is not allowed.');
       $usermeta_html .= '<span id="meta-help">';
       foreach ($all_meta_for_user as $key => $value) {
         if (!is_object($value) && !is_array($value)) {
-          $usermeta_html .= $key . " => " . $value . "<br>";
+          $usermeta_html .= esc_html($key) . " => " . esc_html($value) . "<br>";
         }
       }
       $usermeta_html .= '</span>' . $extraUserInfo;
@@ -129,7 +129,7 @@ defined('_VALID_AI') or die('Direct Access to this location is not allowed.');
       $style_fs = '';
     }
     printTextInput(false, $devOptions, __('Style', 'advanced-iframe'), 'style', __('You can define styles for the iframe if you like. The recommended way is to put the styles in a css file and use the class option. With the button below the width, height, content_id, content_styles, hide_content_until_iframe_color and the needed styles above for a fullscreen iframe are set. Also check the settings at the height where you can do calculations to add fixed headers/footers. Shortcode attribute: style=""' . $style_fs, 'advanced-iframe'));
-    printTextInput(false, $devOptions, __('Id', 'advanced-iframe'), 'id', __('Enter the \'id\' attribute of the iframe. Allowed values are only a-zA-Z0-9_. Ids cannot start with a number!!! Do NOT use any other characters because the id is also used to generate unique javascript functions! Other characters will be removed when you save! If a src directly in a shortcode is set and no id than an id is generated automatically if several iframes are on one page to avoid configuration problems. Shortcode attribute: id=""', 'advanced-iframe'));
+    printTextInput(false, $devOptions, __('Id', 'advanced-iframe'), 'id', __('Enter the \'id\' attribute of the iframe. Allowed values are only a-zA-Z0-9_. Ids cannot start with a number!!! This settings is mandatory. If the sanitized value is invalid the old value is used. Do NOT use any other characters because the id is also used to generate unique javascript functions! Other characters will be removed when you save! If a src directly in a shortcode is set and no id than an id is generated automatically if several iframes are on one page to avoid configuration problems. Shortcode attribute: id=""', 'advanced-iframe'));
     printTextInput(false, $devOptions, __('Name', 'advanced-iframe'), 'name', __('Enter the \'name\' attribute of the iframe. Shortcode attribute: name=""', 'advanced-iframe'));
     printTrueFalse(false, $devOptions, __('Allow full screen', 'advanced-iframe'), 'allowfullscreen', __('allowfullscreen is an HTML attribute that enables videos to be displayed in fullscreen mode. Currently this is a new html attribute not supported by all browsers. So please check  all of the browsers you want to support. Shortcode attribute: allowfullscreen="true" or allowfullscreen="false"', 'advanced-iframe'));
 

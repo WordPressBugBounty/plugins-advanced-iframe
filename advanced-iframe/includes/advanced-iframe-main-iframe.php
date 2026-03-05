@@ -133,7 +133,7 @@ if (!empty($hide_part_of_iframe)) {
       $hide_href = '';
 	  if ($num_values === 7 || $num_values === 8) {
         $display_type = 'a';
-        $hrefValue = esc_html(trim($values[6]));
+        $hrefValue = esc_url(trim($values[6]));
         if ($hrefValue === 'changeViewport') {
           $hide_href = ' href="javascript:setNewViewPort' . $id . '(0); "';
         } else {
@@ -369,7 +369,7 @@ if ($height != 'not set' && $height != '') {
   $html .= ' height="' . esc_html(trim($height)) . '" ';
   // html5 style to support vw and vh and we only add it if not present.
   if (strpos($style, 'height:') === false) {
-    $style .= 'height:' . esc_html(trim($this->addPx($height))) . ';';
+    $style .= ';height:' . esc_html(trim($this->addPx($height))) . ';';
   }
 }
 
