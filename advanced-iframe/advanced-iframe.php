@@ -2,7 +2,7 @@
 /*
 Plugin Name: Advanced iFrame
 Plugin URI: https://wordpress.org/plugins/advanced-iframe/
-Version: 2026.0
+Version: 2026.1
 Requires at least: 5.5
 Requires PHP: 7.4
 Text Domain: advanced-iframe
@@ -35,7 +35,7 @@ if (!defined('_VALID_AI')) {
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-$aiVersion = '2026.0';
+$aiVersion = '2026.1';
 // check $aiJsSize
 
 $cons_advancediFrame = null;
