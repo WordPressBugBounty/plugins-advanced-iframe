@@ -710,6 +710,7 @@ ul#browser-list {
 
 #ai .postbox {
     margin-bottom: 10px;
+	border-radius: 8px;
 }
 
 #ai .postbox.closed {

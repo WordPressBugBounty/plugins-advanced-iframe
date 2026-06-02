@@ -1,8 +1,8 @@
 === Advanced iFrame ===
 Contributors: mdempfle
 Tags: iframe, embed, resize, shortcode, modify css
-Stable tag: 2026.1
-Tested up to: 6.9.4
+Stable tag: 2026.2
+Tested up to: 7.0
 Requires at least: 5.5
 Requires PHP: 7.4
 License: GPLv3 or later
@@ -166,6 +166,10 @@ Use the Wordpress installer to update or simply overwrite all files from your pr
 If you have some radio elements empty after the update simply select the one you like and save again.
 
 == Changelog ==
+= 2026.2 =
+- Security fix: additional_js could be used as contributor still in the Gutenberg block. Now also there "Stored Cross-Site Scripting via Gutenberg Block 'additional' Attribute" is closed. See: https://www.cve.org/CVERecord?id=CVE-2026-6742 
+- New: Testend and optimized for WordPress 7.0
+
 = 2026.1 =
 - New: Tested with WordPress 6.9.4
 - New: Updated Freemius to v2.13.1

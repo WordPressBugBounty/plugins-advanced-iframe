@@ -2,7 +2,7 @@
 /*
 Plugin Name: Advanced iFrame
 Plugin URI: https://wordpress.org/plugins/advanced-iframe/
-Version: 2026.1
+Version: 2026.2
 Requires at least: 5.5
 Requires PHP: 7.4
 Text Domain: advanced-iframe
@@ -35,7 +35,7 @@ if (!defined('_VALID_AI')) {
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-$aiVersion = '2026.1';
+$aiVersion = '2026.2';
 // check $aiJsSize
 
 $cons_advancediFrame = null;
@@ -1241,7 +1241,7 @@ if (function_exists('ai_fs')) {
           return $aip_version;
         } else {
           $version_info = 0;
-	  $devOptions = $this->getAiAdminOptions();
+	      $devOptions = $this->getAiAdminOptions();
           $purchaseCode = (isset($devOptions['purchase_code']) && strlen($devOptions['purchase_code']) === 36) ? $devOptions['purchase_code'] : 'NOT_SET';
           $pro = $ai_fs->can_use_premium_code__premium_only() ? "1" : "2";
 	      $default_key = "put your unique phrase here";
@@ -1866,7 +1866,7 @@ if (function_exists('ai_fs')) {
     }
 	
     // we remove in the gutenberg block all attributes for the right unfiltered_html because of security reasons. If a user needs this, short code block can be used.   
-    $invalidAttributes = array("onload", "custom", "include_html", "additional_js_file_iframe");
+    $invalidAttributes = array("onload", "custom", "include_html", "additional_js_file_iframe","additional_js");
     foreach ($new_attributes as $key => $value) {
       if (in_array($key, $invalidAttributes)) {
         unset($new_attributes[$key]);
