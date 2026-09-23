@@ -2,7 +2,7 @@
 /*
 Plugin Name: Advanced iFrame
 Plugin URI: https://wordpress.org/plugins/advanced-iframe/
-Version: 2026.2
+Version: 2026.3
 Requires at least: 5.5
 Requires PHP: 7.4
 Text Domain: advanced-iframe
@@ -35,7 +35,7 @@ if (!defined('_VALID_AI')) {
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-$aiVersion = '2026.2';
+$aiVersion = '2026.3';
 // check $aiJsSize
 
 $cons_advancediFrame = null;
@@ -972,7 +972,7 @@ if (function_exists('ai_fs')) {
 
       function createMinimizedAiJs($backend) {
         global $aiVersion;
-        $aiJsSize = 88293;
+        $aiJsSize = 88536;
         $newContent = file_get_contents(dirname(__FILE__) . '/js/ai.js');
         $oldFileName = dirname(__FILE__) . '/js/ai.min.js';
         if ((strlen($newContent) == $aiJsSize) && file_exists($oldFileName)) {

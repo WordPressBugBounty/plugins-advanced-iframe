@@ -1,8 +1,8 @@
 === Advanced iFrame ===
 Contributors: mdempfle
 Tags: iframe, embed, resize, shortcode, modify css
-Stable tag: 2026.2
-Tested up to: 7.0
+Stable tag: 2026.3
+Tested up to: 7.1.2
 Requires at least: 5.5
 Requires PHP: 7.4
 License: GPLv3 or later
@@ -12,7 +12,8 @@ Include content the way YOU like in an iframe that can hide and modify elements,
 
 == Description ==
 
-> **[New website: advanced-iframe.com](https://www.advanced-iframe.com/)**
+> **[AI Assistant](https://www.advanced-iframe.com/advanced-iframe-ai-assistant)**
+> **[Documentation](https://www.advanced-iframe.com/)**
 > **[Demo](https://www.advanced-iframe.com/advanced-iframe/demo-advanced-iframe-2-0)**
 
 Include content the way YOU like in an iframe that can hide and modify elements, does auto height, forward parameters and does many, many more...
@@ -166,6 +167,14 @@ Use the Wordpress installer to update or simply overwrite all files from your pr
 If you have some radio elements empty after the update simply select the one you like and save again.
 
 == Changelog ==
+= 2026.3 =
+- New: Added the AI Assistant: https://www.advanced-iframe.com/advanced-iframe-ai-assistant
+- New: A new template for the pro version was added to enable google analytic tracking in the iframe in js/ai_post_message_converter_google_analytics_template.js. Check the documentation in this file.
+- New: The active tab is now remembered after a page reload
+- New: Tested with WordPress 7.1.2
+- New: Updated Freemius to v2.13.4
+- Fix: Admin styles optimized for WordPress 7
+
 = 2026.2 =
 - Security fix: additional_js could be used as contributor still in the Gutenberg block. Now also there "Stored Cross-Site Scripting via Gutenberg Block 'additional' Attribute" is closed. See: https://www.cve.org/CVERecord?id=CVE-2026-6742 
 - New: Testend and optimized for WordPress 7.0

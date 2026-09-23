@@ -1,5 +1,5 @@
 /**
- *  Advanced iframe functions v2026.2
+ *  Advanced iframe functions v2026.3
  */
 /* jslint devel: true, unused: false */
 /* globals ai_show_id_only:false, aiChangeUrl: false, aiResizeIframeHeightId: false, aiShowIframeId: false, findAndReplaceDOMText: false, aiShowDebug: false */
@@ -657,6 +657,7 @@ function aiInitAdminConfiguration(isPro, acc_type) {
     jQuery('section').hide();
     jQuery('section.' + current_tab).show();
     jQuery('#current_tab').val(current_tab.substr(4, 1));
+    localStorage.setItem('ai_current_tab', current_tab.substr(4, 1));
     jQuery('.nav-tab').removeClass('nav-tab-active');
     jQuery(this).addClass('nav-tab-active');
     jQuery(this).blur();
@@ -827,6 +828,10 @@ function aiInitAdminConfiguration(isPro, acc_type) {
 
   jQuery(document).on('click', '#show-version-message.is-permanent-closable button', function () {
     closeInfoPermanent('show-version-message');
+  });
+
+  jQuery(document).on('click', '#show-ai-assistant-message.is-permanent-closable button', function () {
+    closeInfoPermanent('show-ai-assistant-message');
   });
 
   jQuery(document).on('click', '.mq-breakpoint-height a', function (evt) {

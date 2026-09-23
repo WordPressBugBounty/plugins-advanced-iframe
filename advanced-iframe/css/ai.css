@@ -312,7 +312,7 @@ ul#browser-list {
     bottom: 0;
     left: auto;
     margin-left: -22px;
-    height: 46px;
+    height: 50px;
     border-top: 1px solid #aaa;
     border-left: 1px solid #aaa;
     background: rgb(225, 225, 225);
@@ -323,7 +323,11 @@ ul#browser-list {
 }
 
 #ai #wpadminbar.ai-save-bar > div {
-    margin: 7px;
+    margin: 0 7px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    line-height: 1;
 }
 
 #ai #ai-updated-text {
@@ -339,20 +343,20 @@ ul#browser-list {
     font-weight: bold;
 }
 
-#ai #wpbarbutton, #wpresetbutton {
-    padding-left: 10px;
-    padding-right: 10px;
-    line-height: 26px;
+#ai #wpbarbutton, #ai #wpresetbutton {
+    padding: 0 10px;
+    height: 40px !important;
+    box-sizing: border-box;
     border-radius: 3px;
 }
 
 #ai #wpbarbutton {
-    margin-left: 14px;
+    margin-left: 27px;
 }
 
 #ai #wpresetbutton {
     margin-left: 5px;
-    line-height: 28px;
+    background-color: #f6f7f7;
 }
 
 

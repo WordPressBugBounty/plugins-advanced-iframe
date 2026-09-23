@@ -71,11 +71,14 @@ if (is_user_logged_in() && is_admin()) {
   }
 
   $current_tab = ($devOptions['donation_bottom'] === 'false') ? 0 : 1;
+  $tab_from_post = false;
   if (isset($_POST['current_tab'])) {
     $current_tab = urlencode($_POST['current_tab']);
+    $tab_from_post = true;
   }
   if (isset($_GET['current_tab'])) {
     $current_tab = urlencode($_GET['current_tab']);
+    $tab_from_post = true;
   }
   $current_tab = aiProcessConfigActions($current_tab);
 
@@ -439,6 +442,14 @@ if (is_user_logged_in() && is_admin()) {
         echo '</strong></p></p></div>';
       }
 
+      if (!(isset($devOptions['closed_messages']) && isset($devOptions['closed_messages']['show-ai-assistant-message']))) {
+        echo '<div id="show-ai-assistant-message" class="notice notice-info is-dismissible is-permanent-closable"><p><strong>';
+        echo __('New: Advanced iFrame AI Assistant', 'advanced-iframe');
+        echo '</strong> &mdash; ';
+        echo __('Get instant help for your iFrame setup. Visit the', 'advanced-iframe');
+        echo ' <a href="//www.advanced-iframe.com/advanced-iframe-ai-assistant" target="_blank">' . __('Advanced iFrame AI Assistant page', 'advanced-iframe') . '</a> &rarr;</p></div>';
+      }
+
       $showProMessage = !(isset($devOptions['closed_messages']) && isset($devOptions['closed_messages']['test-pro-admin']));
       if (!$evanto && !$isDemo && $showProMessage) {
         echo '<div id="test-pro-admin" class="notice notice-success is-dismissible is-permanent-closable"><p><strong>';
@@ -487,13 +498,13 @@ if (is_user_logged_in() && is_admin()) {
       <a id="tab_2" class="nav-tab advanced-settings-tab" href="#advanced"><span>Advanced Settings</span></a>
       <a id="tab_3" class="nav-tab external-workaround" href="#external-workaround"><span>External workaround</span></a>
       <a id="tab_4" class="nav-tab" href="#add-files"><span>Add/Include files</span></a>
-      <a id="tab_5" class="nav-tab help-tab" href="#help"><span>Help / FAQ</span></a>', 'advanced-iframe');
+      <a id="tab_5" class="nav-tab help-tab" href="#help"><span>AI / Help</span></a>', 'advanced-iframe');
       } else {
         _e('<a id="tab_1" class="nav-tab nav-tab-active" href="#basic"><span>Basic Settings</span></a>
     <a id="tab_2" class="nav-tab advanced-settings-tab" href="#advanced"><span>Advanced Settings</span></a>
     <a id="tab_3" class="nav-tab external-workaround" href="#external-workaround"><span>External workaround</span></a>
     <a id="tab_4" class="nav-tab" href="#add-files"><span>Add/Include files</span></a>
-    <a id="tab_5" class="nav-tab help-tab" href="#help"><span>Help / FAQ</span></a>
+    <a id="tab_5" class="nav-tab help-tab" href="#help"><span>AI / Help</span></a>
     <a id="tab_0" class="nav-tab options-tab" href="#introduction"><span>Options</span></a>', 'advanced-iframe');
       }
       _e('
@@ -529,6 +540,8 @@ if (is_user_logged_in() && is_admin()) {
         include_once dirname(__FILE__) . '/includes/advanced-iframe-admin-add-files.php';
         include_once dirname(__FILE__) . '/includes/advanced-iframe-admin-include-directly.php';
         echo '</section><section  id="section-help" class="tab_5">';
+        echo '<br/><div id="icon-options-general" class="icon_ai"><br/></div><h2 class="default-h2">' . __('Help/FAQ/AI', 'advanced-iframe') . '</h2>';
+        include_once dirname(__FILE__) . '/includes/advanced-iframe-admin-ai-assistant.php';
         include_once dirname(__FILE__) . '/includes/advanced-iframe-admin-video.php';
         include_once dirname(__FILE__) . '/includes/advanced-iframe-admin-faq.php';
         include_once dirname(__FILE__) . '/includes/advanced-iframe-admin-forum.php';
@@ -559,7 +572,10 @@ if (is_user_logged_in() && is_admin()) {
           aiInitAdminConfiguration(<?php echo ($evanto) ? "true" : "false"; ?>,<?php echo '"' . $devOptions['accordeon_menu'] . '"'; ?>);
         }, 100);
       }
-      document.getElementById('tab_<?php echo $current_tab; ?>').click();
+      var aiTabFromPost = <?php echo $tab_from_post ? 'true' : 'false'; ?>;
+      var aiSavedTab = localStorage.getItem('ai_current_tab');
+      var aiTabToActivate = aiTabFromPost ? '<?php echo $current_tab; ?>' : (aiSavedTab !== null ? aiSavedTab : '<?php echo $current_tab; ?>');
+      document.getElementById('tab_' + aiTabToActivate).click();
       setTimeout(function () {
         jQuery(document).scrollTop(<?php echo $scrollposition; ?>);
         aiAccTime = 400;
