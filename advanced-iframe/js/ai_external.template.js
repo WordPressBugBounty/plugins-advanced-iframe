@@ -1,5 +1,5 @@
 /**
- *  Advanced iframe external workaround file v2025 free
+ *  Advanced iframe external workaround file v2026 free
  *  Created: PARAM_TIMESTAMP
  */
 var extendedDebug = false;
